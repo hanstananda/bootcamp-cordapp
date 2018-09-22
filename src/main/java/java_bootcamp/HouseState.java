@@ -1,5 +1,6 @@
 package java_bootcamp;
 
+import com.google.common.collect.ImmutableList;
 import net.corda.core.contracts.ContractState;
 import net.corda.core.identity.AbstractParty;
 import net.corda.core.identity.Party;
@@ -28,7 +29,8 @@ public class HouseState implements ContractState{
     }
 
     public static void main(String[] args){
-        HouseState state = new HouseState( address:"20 Nanyang Avenue",joel);
+        Party joel=null;
+        HouseState state = new HouseState("20 Nanyang Avenue",joel);
     }
 
     @NotNull

@@ -45,11 +45,11 @@ public class ContainerState implements ContractState
         Party jetcpackImporters = null;
         Party jetpackcarriers = null;
         ContainerState container = new ContainerState(
-                width:2,
-                height:4,
-        depth:2,
-        contents:"Jetpacks",
-            jetcpackImporters,jetpackcarriers);
-        );
+                2,
+                4,
+        2,
+        "Jetpacks",
+            jetcpackImporters,
+                jetpackcarriers);
     }
 }
