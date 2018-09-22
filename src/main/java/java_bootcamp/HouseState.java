@@ -22,14 +22,19 @@ public class HouseState implements ContractState{
         return address;
     }
 
+    public Party getOwner()
+    {
+        return owner;
+    }
+
     public static void main(String[] args){
-        HouseState state = new HouseState( address:"20 Nanyang Avenue");
+        HouseState state = new HouseState( address:"20 Nanyang Avenue",joel);
     }
 
     @NotNull
     @Override
     public List<AbstractParty> getParticipants() {
-        return ImmutableList.of();
+        return ImmutableList.of(owner);
     }
 
 }
