@@ -2,12 +2,29 @@ package java_bootcamp;
 
 import net.corda.core.contracts.ContractState;
 import net.corda.core.identity.AbstractParty;
+import net.corda.core.identity.Party;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
 
 public class HouseState implements ContractState{
+    private String address;
+    private Party owner;
+
+    public HouseState(String address,Party owner)
+    {
+        this.address = address;
+        this.owner = owner;
+    }
+
+    public String getAddress(){
+        return address;
+    }
+
+    public static void main(String[] args){
+        HouseState state = new HouseState( address:"20 Nanyang Avenue");
+    }
 
     @NotNull
     @Override
