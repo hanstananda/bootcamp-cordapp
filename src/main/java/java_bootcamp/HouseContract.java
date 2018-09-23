@@ -87,11 +87,11 @@ public class HouseContract implements Contract {
         //throw new IllegalArgumentException("Accept nothing"); --> make it denies everything :)
     }
     // use this class to make those classes known as command list
-    public class Register implements CommandData{
+    public static class Register implements CommandData{
 
     }
 
-    public class Transfer implements  CommandData{
+    public static class Transfer implements  CommandData{
 
     }
 }
