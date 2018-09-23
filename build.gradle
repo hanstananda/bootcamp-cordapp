@@ -67,7 +67,12 @@ tasks.withType(JavaCompile) {
     options.compilerArgs << "-parameters" // Required for shell commands.
 }
 
+// Click run here :)
+// build: gradlew clean deployNodesJava
+// run: .\build\nodes\runnodes.bat
 task deployNodesJava(type: net.corda.plugins.Cordform, dependsOn: ['jar']) {
+    // these are the nodes
+    // rpc is for non-notary nodes
     directory "./build/nodes"
     node {
         name "O=Notary,L=London,C=GB"
