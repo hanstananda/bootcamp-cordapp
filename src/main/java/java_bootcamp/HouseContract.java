@@ -3,6 +3,8 @@ package java_bootcamp;
 import net.corda.core.contracts.Command;
 import net.corda.core.contracts.CommandData;
 import net.corda.core.contracts.Contract;
+import net.corda.core.contracts.ContractState;
+import net.corda.core.identity.Party;
 import net.corda.core.transactions.LedgerTransaction;
 
 import java.security.PublicKey;
@@ -22,7 +24,26 @@ public class HouseContract implements Contract {
         //impose rules on certain command
         if (commandType instanceof Register)
         {
-            //TODO("Registration transaction logic.")
+            // "Shape" constraints.
+            if(tx.getInputStates().size()!=0)
+                throw new IllegalArgumentException("Registration must have no input!");
+            if(tx.getOutputStates().size()!=1)
+                throw new IllegalArgumentException("Transaction must have one output!");
+
+            // Content constraints.
+            ContractState outputState = tx.getOutput(0);
+            if(outputState instanceof HouseState)
+                throw new IllegalArgumentException("Output must be housestate");
+            HouseState houseState = (HouseState) outputState;
+            if(houseState.getAddress().length()<=3)
+                throw new IllegalArgumentException("Address must be longer than 3 characters");
+            if(houseState.getOwner().getName().getCountry().equals("Brazil"))
+                throw new IllegalArgumentException("Not allowed to register for Brazilian owners :(");
+            // Required signer constraints.
+            Party owner = houseState.getOwner();
+            PublicKey ownersKey = owner.getOwningKey();
+            if(!(requiredSigners.contains(ownersKey)))
+                throw new IllegalArgumentException("Owner must sign the registration");
         }
         else if (commandType instanceof Transfer){
             //TODO("Transfer transaction logic.")
